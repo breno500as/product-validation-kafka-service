@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+import com.br.product.validation.service.ProductValidationService;
 import com.br.product.validation.utils.JsonUtil;
 
 @Component
 public class ProductValidationConsumer {
 
 	private Logger logger = LoggerFactory.getLogger(ProductValidationConsumer.class);
+	
+	@Autowired
+	private ProductValidationService productValidationService;
 
 	@Autowired
 	private JsonUtil jsonUtil;
@@ -27,6 +31,10 @@ public class ProductValidationConsumer {
 		var event = jsonUtil.toEvent(payload);
 		
 		this.logger.info(event.toString());
+		
+		this.productValidationService.trySuccessEvent(event);
+		
+	
 	}
 	
 	@KafkaListener(
@@ -40,6 +48,8 @@ public class ProductValidationConsumer {
 		var event = jsonUtil.toEvent(payload);
 		
 		this.logger.info(event.toString());
+		
+		this.productValidationService.rollbackEvent(event);
 	}
 	
 	

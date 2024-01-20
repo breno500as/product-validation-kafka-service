@@ -1,9 +1,11 @@
 package com.br.product.validation.dtos;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.br.product.validation.enums.SagaStatusEnum;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 public class Event {
 
@@ -102,6 +104,14 @@ public class Event {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+	
+	public void addToHistory(History history) {
+		if (isEmpty(this.eventHistory)) {
+			this.eventHistory = new ArrayList<History>();
+		}
+		
+		this.eventHistory.add(history);
 	}
 
 }

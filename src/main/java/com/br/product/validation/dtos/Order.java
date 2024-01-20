@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Order {
 
-	private Long id;
+	private String id;
 
-	private List<OrderProducts> product;
+	private List<OrderProducts> products;
 
 	private LocalDateTime createdAt;
 
@@ -21,31 +21,31 @@ public class Order {
 
 	}
 
-	public Order(Long id, List<OrderProducts> product, LocalDateTime createdAt, String transactionId,
+	public Order(String id, List<OrderProducts> products, LocalDateTime createdAt, String transactionId,
 			double totalAmount, int totalItens) {
 		super();
 		this.id = id;
-		this.product = product;
+		this.products = products;
 		this.createdAt = createdAt;
 		this.transactionId = transactionId;
 		this.totalAmount = totalAmount;
 		this.totalItens = totalItens;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public List<OrderProducts> getProduct() {
-		return product;
+	public List<OrderProducts> getProducts() {
+		return products;
 	}
 
-	public void setProduct(List<OrderProducts> product) {
-		this.product = product;
+	public void setProducts(List<OrderProducts> products) {
+		this.products = products;
 	}
 
 	public LocalDateTime getCreatedAt() {
