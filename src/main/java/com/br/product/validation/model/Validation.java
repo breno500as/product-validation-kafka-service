@@ -19,19 +19,19 @@ public class Validation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "ORDER_ID", nullable = false)
+	@Column(name = "order_id", nullable = false)
 	private String orderId;
 
-	@Column(name = "TRANSACTION_ID", nullable = false)
+	@Column(name = "transaction_id", nullable = false)
 	private String transactionId;
 
-	@Column(name = "SUCCESS", nullable = false)
+	@Column(name = "success", nullable = false)
 	private boolean success;
 
-	@Column(name = "CREATED_AT", nullable = false, updatable = false)
+	@Column(name = "created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
 
-	@Column(name = "UPDATED_AT", nullable = false)
+	@Column(name = "updated_at", nullable = false)
 	private LocalDateTime updatedAt;
 
 	public Long getId() {
