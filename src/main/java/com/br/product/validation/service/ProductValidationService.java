@@ -69,7 +69,7 @@ public class ProductValidationService {
 
 	private void changeValidationToFail(Event event) {
 		this.validationRepository
-				.findByOrderIdAndTransactionId(event.getPayload().getId(), event.getPayload().getTransactionId())
+				.findByOrderIdAndTransactionId(event.getPayload().getId(), event.getTransactionId())
 				.ifPresentOrElse(validation -> {
 					validation.setSuccess(false);
 					this.validationRepository.save(validation);
@@ -84,7 +84,7 @@ public class ProductValidationService {
 			throw new ValidationException("Product list empty!");
 		}
 
-		if (isEmpty(event.getPayload().getId()) || isEmpty(event.getPayload().getTransactionId())) {
+		if (isEmpty(event.getPayload().getId()) || isEmpty(event.getTransactionId())) {
 			throw new ValidationException("Order id and transaction id must be informed!");
 		}
 
@@ -92,7 +92,7 @@ public class ProductValidationService {
 		// enviar mais de uma
 		/// vez a mesma mensagem
 		if (this.validationRepository.existsByOrderIdAndTransactionId(event.getPayload().getId(),
-				event.getPayload().getTransactionId())) {
+				event.getTransactionId())) {
 			throw new ValidationException("There's another transactionId for this validation!");
 		}
 
